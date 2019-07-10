@@ -5,7 +5,7 @@ Tool for showing your FFXIV skill cycle in realtime.
 
 #### Usages
 
-- Makes you check your dps cycle.
+- Makes you checking your dps cycle.
 - On your skill cycle movie/raid PoV video or streaming, this makes truly easy to show your skill cycle to your viewers.
 
 ![preview](./mdimages/preview.gif)
@@ -29,6 +29,8 @@ We will not cover the installation about ***ACT*** or ***OverlayPlugin***.
 ## Download
 
 - kagami overlay: <https://github.com/anoyetta-academy/kagami/releases/latest>
+
+recent updated: 190710
 
 
 
@@ -62,6 +64,9 @@ We will not cover the installation about ***ACT*** or ***OverlayPlugin***.
 #### Overlay URLs
 
 > `https://ramram1048.github.io/kagamireact/`
+>
+> `https://ramram1048.github.io/kagami-light/`
+> (lightweight version, may contain beta features)
 
 
 

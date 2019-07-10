@@ -31,6 +31,8 @@
 
 - kagami overlay: <https://github.com/anoyetta-academy/kagami/releases/latest>
 
+パッチ日時：190710
+
 
 
 
@@ -63,6 +65,9 @@
 #### Overlay URLs
 
 > `https://ramram1048.github.io/kagamireact/`
+>
+> `https://ramram1048.github.io/kagami-light/`
+> (軽量化ver, 臨時機能を込むことがあります)
 
 
 
