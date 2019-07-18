@@ -10,10 +10,10 @@ const job_icons = importAll(require.context('./job_icons/svg', false, /\.svg$/))
 const other_icons = importAll(require.context('./other_icons', false, /\.svg$/));
 const TEST_MODEL = {
   "player": "Ram Ram",
-  "job": "BLU",
+  "job": "FSH",
   "encDPS": 0.0,
   "duration": "00:00:00",
-  "zone": "kagami v190705",
+  "zone": "kagami v190710",
   "time": "2019-05-23 17:00:00.000",
   "isActive": false,
   "actions": []
@@ -23,9 +23,10 @@ var animSpeed = 10;
 
 class KagamiAction extends React.Component{
   render(){
+    const type = (this.props.action.category===4||this.props.action.category===5)?"ability":"gcd";
     const animationStyle = this.props.anim?`icon-move `+animSpeed+`s linear`:``;
     return(
-      <li style={{animation: animationStyle}} className={(this.props.action.category===4)?"ability":"gcd"}>
+      <li style={{animation: animationStyle}} className={type}>
         <img src={action_icons[this.props.action.icon]} alt={this.props.action.name} />
       </li>
     )
@@ -93,7 +94,6 @@ class App extends React.Component{
     this.setState({
       model: TEST_MODEL,
       lastSeq: -1,
-      window: [],
       current: [],
       history: []
     });
@@ -131,16 +131,26 @@ class App extends React.Component{
   //   })
   // }
   readActions(actions){
-    actions.some((action) => {
-      let newWindowArray = this.state.window;
-      newWindowArray.push(<KagamiAction key={"w"+action.seq} anim={true} action={action} />)
-      let newCurrentArray = this.state.current;
-      newCurrentArray.push(<KagamiAction key={action.seq} anim={false} action={action} />);
-      this.setState({
-        window: newWindowArray,
-        current: newCurrentArray
-      });
-    })
+    const length = actions.length;
+    if(length > 0){
+      for(let i=0; i<length; i++){
+        let newWindowArray = this.state.window;
+        newWindowArray.push(<KagamiAction key={"w"+actions[i].seq} anim={true} action={actions[i]} />)
+        let newCurrentArray = this.state.current;
+        newCurrentArray.push(<KagamiAction key={actions[i].seq} anim={false} action={actions[i]} />);
+        this.setState({
+          window: newWindowArray,
+          current: newCurrentArray
+        });
+        setTimeout(() => {
+          let newWindowArray = this.state.window;
+          if(newWindowArray.length >= length){
+            for(let i=0; i<length; i++) newWindowArray.shift();
+            this.setState({window: newWindowArray});
+          }
+        },animSpeed*1000);
+      }
+    }
   }
 
   update(json){
